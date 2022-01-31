@@ -19,14 +19,6 @@ export default class App extends React.Component {
     this.updateCartCount = this.updateCartCount.bind(this);
   }
 
-  // getCartCount() {
-  //   let cart = localStorage.getItem("cart");
-  //   if (cart == null){
-  //     localStorage.setItem("cart", "[]");
-  //   }
-  //   return JSON.parse(localStorage.getItem("cart")).length;
-  // }
-
   updateCartCount() {
     let cart = localStorage.getItem("cart");
     if (cart == null){

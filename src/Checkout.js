@@ -31,6 +31,7 @@ console.log(sum);
         
         <h5>Total: ${sum}</h5>
         <MySillyCheckoutForm />
+        <h4>Payment Submitted to Braintree</h4>
       </div>
     );
   }

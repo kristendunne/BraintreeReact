@@ -15,6 +15,24 @@ class MySillyCheckoutForm extends React.PureComponent {
         ].forEach(prop => (this[prop] = this[prop].bind(this)));
     }
 
+getAmount() {
+  let cart = localStorage.getItem("cart")
+  if (cart == null){
+    localStorage.setItem("cart", "[]")
+  }
+  let items = JSON.parse(localStorage.getItem("cart"))
+
+  const array = items.map((item) => item.price);
+
+let sum = 0;
+
+for (let i = 0; i < array.length; i++) {
+    sum += array[i];
+}
+console.log(sum);
+return sum;
+}
+
     state = {}
 
     onError(error) {
@@ -23,9 +41,16 @@ class MySillyCheckoutForm extends React.PureComponent {
 
     getToken() {
         this.tokenize().then(
-            token => this.setState({ token, error: null }),
+            (token) => {
+              this.setState({ token, error: null });
+              console.log("my nonce: ");
+              console.log(token);
+              console.log(token.nonce);
+              fetch("http://localhost:5000/transactions?nonce=" + token.nonce + "&amount=" + this.getAmount());
+            }
         ).catch(error => this.onError(error));
     }
+  
 
     onCardTypeChange({ cards }) {
         if (1 === cards.length) {
@@ -70,8 +95,8 @@ class MySillyCheckoutForm extends React.PureComponent {
         return (
             <div>
                 <h3>Credit Card Payment</h3>
-                {this.renderResult('Error', this.state.error)}
-                {this.renderResult('Token', this.state.token)}
+                {/* {this.renderResult('Error', this.state.error)}
+                {this.renderResult('Token', this.state.token)} */}
 
                 <Braintree
                     ref={this.braintree}
@@ -115,9 +140,10 @@ class MySillyCheckoutForm extends React.PureComponent {
                     </div>
                 </Braintree>
                 <div className="footer">
-                    <button onClick={this.getToken}>Get nonce token</button>
+                    <button onClick={this.getToken}>Submit</button>
                 </div>
             </div>
+            
         );
     }
 
