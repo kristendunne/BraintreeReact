@@ -1,7 +1,12 @@
+import MySillyCheckoutForm from './MySillyCheckoutForm'
+import About from './About'
 export default function Checkout() {
     return (
-      <main style={{ padding: "1rem 0" }}>
+      <div style={{ padding: "1rem 0" }}>
         <h2>Checkout</h2>
-      </main>
+        <MySillyCheckoutForm />
+      </div>
     );
   }
+
+  
