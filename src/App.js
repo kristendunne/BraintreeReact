@@ -1,28 +1,55 @@
-import logo from './logo.svg';
 import './App.css';
-import { Link } from "react-router-dom";
+import Checkout from './Checkout';
+import Items from './Items';
+import React from 'react';
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+import Navbar from './Navbar';
 
-function App() {
-  return (
-    
-    <div className="App">
-      <header className="App-header">
-      
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit1 <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cartCount: 0
+    };
+    // this.getCartCount = this.getCartCount.bind(this);
+    this.updateCartCount = this.updateCartCount.bind(this);
+  }
+
+  // getCartCount() {
+  //   let cart = localStorage.getItem("cart");
+  //   if (cart == null){
+  //     localStorage.setItem("cart", "[]");
+  //   }
+  //   return JSON.parse(localStorage.getItem("cart")).length;
+  // }
+
+  updateCartCount() {
+    let cart = localStorage.getItem("cart");
+    if (cart == null){
+      localStorage.setItem("cart", "[]");
+    }
+    let cartCount = JSON.parse(localStorage.getItem("cart")).length;
+
+    this.setState({
+      cartCount: cartCount
+    });
+  }
+
+  render() {
+    return (
+      <BrowserRouter>
+      <Navbar cartCount={this.state.cartCount} />
+        <Routes>
+          <Route path="/" element={<Items onCartCountChange={this.updateCartCount} />} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path="items" element={<Items onCartCountChange={this.updateCartCount} />} />
+        </Routes>
+      </BrowserRouter>
+    );
+  }
 }
 
-export default App;

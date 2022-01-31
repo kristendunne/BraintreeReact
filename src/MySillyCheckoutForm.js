@@ -69,7 +69,7 @@ class MySillyCheckoutForm extends React.PureComponent {
     render() {
         return (
             <div>
-                <h1>Braintree Hosted Fields Demo</h1>
+                <h3>Credit Card Payment</h3>
                 {this.renderResult('Error', this.state.error)}
                 {this.renderResult('Token', this.state.token)}
 
@@ -92,7 +92,7 @@ class MySillyCheckoutForm extends React.PureComponent {
                     }}
                 >
                     <div>
-                        Number:
+                        Card Number:
                         <HostedField
                             type="number"
                             onBlur={() => this.setState({ numberFocused: false })}
@@ -102,13 +102,11 @@ class MySillyCheckoutForm extends React.PureComponent {
                             ref={this.numberField}
                         />
                         <p>Card type: {this.state.card}</p>
-                        Name:
+                        Cardholder's Name:
                         <HostedField type="cardholderName" />
-                        Date:
-                        <HostedField type="expirationDate" />
-                        Month:
+                        Expiration Month:
                         <HostedField type="expirationMonth" />
-                        Year:
+                        Expiration Year:
                         <HostedField type="expirationYear" />
                         CVV:
                         <HostedField type="cvv" placeholder="CVV" ref={cvvField => { this.cvvField = cvvField; }} />
