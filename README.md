@@ -1,8 +1,6 @@
-Client-side:
+## Client
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
 In the project directory, you can run:
 
 ### `npm start`
@@ -28,6 +26,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-Server-side: Flask (Python) 
+### Server
+Flask (Python) 
 Running on [http://localhost:5000](http://localhost:5000) 
 No information should be viewable here as localstorage is utilized
