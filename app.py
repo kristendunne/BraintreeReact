@@ -46,3 +46,5 @@ def transactions():
             print("  code: " + error.code)
             print("  message: " + error.message)
     return "ok"
+
+    # flask run
